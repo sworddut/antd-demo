@@ -11,25 +11,6 @@ import network from "./network/network";
 
 const { Sider, Content } = Layout;
 
-type MenuItem = {
-  label: string;
-  key: string;
-  icon?: React.ReactNode;
-  children?: MenuItem[];
-};
-
-type UserData = {
-  id: string;
-  name: string;
-  age: number;
-};
-
-type TeamData = {
-  id: string;
-  name: string;
-  teammates: string[];
-};
-
 const menuItems: MenuItem[] = [
   { label: 'Dashboard', key: 'dashboard', icon: <PieChartOutlined /> },
   { label: 'Files', key: 'files', icon: <FileOutlined /> },
@@ -116,9 +97,11 @@ const App: React.FC = () => {
     }
     
     if (selectedUserOrTeam) {
+      console.log('selectedUserOrTeam',);
+      
       if ('age' in selectedUserOrTeam) {
         return <User info={selectedUserOrTeam as UserData} />;
-      } else if ('teammates' in selectedUserOrTeam) {
+      } else if ('teammateinfos' in selectedUserOrTeam) {
         return <Team info={selectedUserOrTeam as TeamData} />;
       }
     }
